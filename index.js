@@ -1,3 +1,4 @@
+const { response } = require('express')
 const express = require('express')
 const app = express()
 const path = require('path')
@@ -17,16 +18,13 @@ app.get('/contact-me', (request, response) => {
   response.sendFile(path.join(__dirname, '/public/contact-me.html'))
 })
 
-// app.use()
+app.use('*', (request, response) =>  {
+  response.status(404).sendFile(path.join(__dirname, '/public/404.html'))
+})
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}!`)
 })
-
-
-
-
-
 
 // const http = require('http');
 // const path = require('path');
